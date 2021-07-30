@@ -2,9 +2,10 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { ApolloProvider } from '@apollo/client'
 import client from './config/apollo';
 import Auth from './pages/Auth';
-import { ToastContainer } from 'react-toastify'
-import { getToken } from './utils/token'  
-import AuthContext from './context/AuthContext'
+import { ToastContainer } from 'react-toastify';
+import { getToken } from './utils/token';
+import AuthContext from './context/AuthContext';
+import Home from './pages/Home'
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -31,15 +32,15 @@ export default function App() {
     () => ({
       auth,
       logout,
-      setUser
+      setUser,
     }),
     [auth]
-  )
+  );
 
   return (
     <ApolloProvider client={ client }>
       <AuthContext.Provider value={authData}>      
-        {!auth ? <Auth /> : <h1>Estas logeado</h1>}
+        {!auth ? <Auth /> : <Home></Home>}
         <ToastContainer position="top-right" autoClose={5000} hideProgressBar newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover></ToastContainer>
       </AuthContext.Provider>    
     </ApolloProvider>
