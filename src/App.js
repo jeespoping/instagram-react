@@ -5,7 +5,7 @@ import Auth from './pages/Auth';
 import { ToastContainer } from 'react-toastify';
 import { getToken } from './utils/token';
 import AuthContext from './context/AuthContext';
-import Home from './pages/Home'
+import Navigation from './routes/Navigation';
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -40,7 +40,7 @@ export default function App() {
   return (
     <ApolloProvider client={ client }>
       <AuthContext.Provider value={authData}>      
-        {!auth ? <Auth /> : <Home></Home>}
+        {!auth ? <Auth /> : <Navigation />}
         <ToastContainer position="top-right" autoClose={5000} hideProgressBar newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover></ToastContainer>
       </AuthContext.Provider>    
     </ApolloProvider>
